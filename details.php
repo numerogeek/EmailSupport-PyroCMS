@@ -28,7 +28,7 @@
                         'menu' => 'utilities',
                         'sections' => array(
 		                	'supporto' => array(
-			                    'name'  => 'label_support', //Il nome viene preso dal file di lingua
+			                    'name'  => 'label_support', //get from language file
 			                    'uri'   => 'admin/supporto'
 		                     )		                   
 		                )
