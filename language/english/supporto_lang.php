@@ -9,3 +9,5 @@
  * @license     FREE
  */
   $lang['label_support'] = "Contact form";
+  
+  $lang['label_message'] = "Message";
