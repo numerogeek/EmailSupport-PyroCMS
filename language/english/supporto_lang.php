@@ -11,3 +11,5 @@
   $lang['label_support'] = "Contact form";
   
   $lang['label_message'] = "Message";
+  $lang['label_name'] = "Name";
+  $lang['label_lastname'] = "Lastname";
