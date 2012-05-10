@@ -37,11 +37,23 @@
         }
         
         public function install(){
+        
+        	$table = $this->db->dbprefix('email_templates');
+        	
+        	$sql = ("INSERT INTO $table VALUES(NULL, 'support_email_template', 'Template email support', 'Template email support', 'Email support', '<p>\n	You have just receive an email from {{name}} {{lastname}}</p>\n<p>\n	Site: {{url:site}}</p>\n<p>\n	Message:</p>\n<p>\n	{{message}}</p>', 'en', 0, '');
+");
+			if(!$this->db->query($sql))
+				return false;
+				
         	return TRUE;
         }
         
         
         public function uninstall(){
+        	$table = $this->db->dbprefix('email_templates');
+        	$sql = ("DELETE FROM $table WHERE slug='support_email_template'");
+        	if(!$this->db->query($sql))
+				return false;			
             return TRUE;
         }
         

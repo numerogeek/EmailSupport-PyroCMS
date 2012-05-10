@@ -13,3 +13,5 @@
  $lang['label_message'] = "Messaggio";
  $lang['label_name'] = "Nome";
  $lang['label_lastname'] = "Cognome";
+ $lang['success_email'] = "La tua richiesta di supporto è stata inviata correttamente.";
+ $lang['error_email'] = "Si è verificato un errore nell'inviare la richiesta di supporto.";

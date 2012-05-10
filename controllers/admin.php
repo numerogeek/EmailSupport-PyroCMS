@@ -26,6 +26,8 @@
  	
  	function index()
  	{
+ 		//Set your email
+ 		$your_email = "youremail@domain.com";
  		
  		//Load form_validation library
  		$this->load->library('form_validation');
@@ -39,18 +41,37 @@
  		if(!$this->form_validation->run()){
  		
  			//No it isn't, show the form agan
- 			$this->template->build('form');
+ 			$this->template
+ 						 ->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
+ 						->build('form');
  		}
  		else{
  			//Yes it is, let's get data
-			
+ 			
 			//Get user id
 			$user_id = $this->current_user->id;
 			
 			//I need also the user email for the answare, i can get it from users table
 			$user_email = $this->supporto_m->get_user_email($user_id);
 			
+			//Set template and other info
+			$email = array(
+				'slug' 		=> 'support_email_template', 	//This MUST be the same slug of the CP template
+				'to'		=> $your_email,
+				'from'		=> $user_email, 		
+				'name'		=> $this->input->post('name'),
+				'lastname' 	=> $this->input->post('lastname'),
+				'message'	=> $this->input->post('message')
+			);
+		
 			
+			//Send email
+			if(Events::trigger( 'email' , $email , 'array' ))			
+				$this->session->set_flashdata('success',lang('success_email'));
+			else
+				$this->session->set_flashdata('error',lang('error_email'));
+			
+			redirect('admin/supporto');
  		}
  		
  	}
